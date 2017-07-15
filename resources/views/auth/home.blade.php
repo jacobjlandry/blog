@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <h2>Welcome back, {{ Auth::user()->name }}!</h2>
+            <h2>Welcome back, {{ Auth::user()->first_name }}!</h2>
             <br />
             <div class="panel panel-success">
                 <div class="panel-heading">Actions</div>
