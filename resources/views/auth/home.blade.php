@@ -18,6 +18,7 @@
                     <a href="/categories">Manage Categories</a><br />
                     <a href="/subcategories">Manage Subcategories</a><br />
                     <a href="/tags">Manage Tags</a><br />
+                    <a href="/settings">Manage Settings</a><br />
                 </div>
             </div>
             <div style="display: flex;">

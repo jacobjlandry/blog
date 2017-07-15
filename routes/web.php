@@ -20,6 +20,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('categories', 'CategoryController');
     Route::resource('subcategories', 'SubcategoryController');
     Route::resource('tags', 'TagController', ['except' => ['show', 'edit', 'update']]);
+    Route::resource('settings', 'SettingsController', ['except' => ['show']]);
 });
 
 Route::get('/tags/{name}', 'SiteController@tags');
