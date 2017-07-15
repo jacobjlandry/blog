@@ -7,7 +7,7 @@
             <h3>Edit Post</h3>
             <input id="title" name="title" type="text" class="form-control" placeholder="title" value="{{ $post->title }}" /><br />
             <input id="description" name="description" type="text" class="form-control" placeholder="description" value="{{ $post->description }}" /><br />
-            <textarea id="body" name="body" class="form-control" placeholder="Cool blog post!">{{ $post->body }}</textarea><br />
+            <textarea id="body" name="body" class="form-control" placeholder="Cool blog post!">{{ preg_replace("/<br\s*\/*>/", "", $post->body) }}</textarea><br />
             <select id="subcategory" name="subcategory" class="form-control">
                 <option value="">Category</option>
                 @foreach($categories as $category)

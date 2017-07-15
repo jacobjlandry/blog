@@ -16,7 +16,7 @@ class SubcategoryController extends Controller
      */
     public function index()
     {
-        return view('subcategories')
+        return view('subcategory.list')
             ->with('subcategories', Subcategory::all());
     }
 
@@ -27,7 +27,7 @@ class SubcategoryController extends Controller
      */
     public function create()
     {
-        return view('create-subcategory')
+        return view('subcategory.create')
             ->with('categories', Category::all());
     }
 
@@ -73,7 +73,7 @@ class SubcategoryController extends Controller
      */
     public function edit($id)
     {
-        return view('edit-subcategory')
+        return view('subcategory.edit')
             ->with('subcategory', Subcategory::find($id))
             ->with('categories', Category::all());
     }

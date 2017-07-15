@@ -21,11 +21,11 @@
                 </div>
             </div>
             <div style="display: flex;">
-                @foreach($settings->where('type', 'job')->groupBy('name') as $name => $jobs)
+                @foreach($settings->where('type', 'dashboard')->groupBy('name') as $name => $dash)
                     <div class="panel panel-danger" style="flex-grow: 1; @if(!$loop->last) margin-right: 15px; @endif">
                         <div class="panel-heading">{{ $name }}</div>
                         <div class="panel-body">
-                            @foreach($jobs as $job)
+                            @foreach($dash as $job)
                                 <a href="">{!! $job->value !!}</a><br />
                             @endforeach
                         </div>

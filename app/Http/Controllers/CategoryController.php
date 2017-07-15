@@ -16,7 +16,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('categories')
+        return view('category.list')
             ->with('categories', Category::orderBy('weight', 'asc')->get());
     }
 
@@ -27,7 +27,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('create-category');
+        return view('category.create');
     }
 
     /**
@@ -72,7 +72,7 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        return view('edit-category')
+        return view('category.edit')
             ->with('category', Category::find($id));
     }
 

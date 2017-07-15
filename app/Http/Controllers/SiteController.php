@@ -34,7 +34,7 @@ class SiteController extends Controller
 
         $posts = $posts->get();
 
-        return view('welcome')
+        return view('blog.welcome')
             ->with('posts', $posts)
             ->with('categories', $categories)
             ->with('currentCategory', $category);
@@ -51,7 +51,7 @@ class SiteController extends Controller
             ->orderBy('published_at', 'desc')
             ->get();
 
-        return view('welcome')
+        return view('blog.welcome')
             ->with('posts', $posts)
             ->with('categories', $categories);
     }
@@ -66,7 +66,7 @@ class SiteController extends Controller
             ->orderBy('published_at', 'asc')
             ->get();
 
-        return view('reader')
+        return view('blog.reader')
             ->with('post', $posts[$currentPost - 1])
             ->with('categories', $categories)
             ->with('currentCategory', $subcategory->category->name)

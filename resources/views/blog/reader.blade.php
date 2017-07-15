@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>{{ config('app.name') }}</title>
+        <title>{{ env('APP_NAME') }}</title>
 
         <!-- Fonts -->
         <!--<link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">-->
@@ -112,12 +112,16 @@
             .post-tags {
                 margin-top: 10px;
             }
+            .controls {
+                display: flex;
+                justify-content: space-between;
+            }
         </style>
     </head>
     <body>
         <div>
             <div class="title">
-                {{ config('app.name') }}
+                {{ env('APP_NAME') }}
             </div>
 
             <div class="navigation">
@@ -127,29 +131,32 @@
             </div>
 
             <div class="content">
-                @foreach($posts as $post)
-                    @if(!$loop->first)
-                        <div class="separator"></div>
-                    @endif
-                    <div class="post">
-                        <div class="post-date"><span>{{ $post->published_at->format('l F j, Y') }}</span></div>
-                        <div class="post-header">
-                            <div class="post-title">
-                                {{ $post->title }}
-                                @if($post->subcategory)
-                                    <span class="subcategory"><a href="/{{ $post->subcategory->category->name }}/{{ $post->subcategory->name }}">[{{ $post->subcategory->name }}]</a></span> 
-                                    <span class="subcategory"><a href="/reader/{{ $post->subcategory->id }}/{{ $post->currentPosition() + 1 }}">[Reader View]</a></span>
-                                @endif
-                            </div>
-                        </div>
-                        {{ $post->body }}
-                        <div class="post-tags">
-                            @foreach($post->tags as $tag)
-                                <a href="/tags/{{ $tag->name }}">#{{ $tag->name }}</a> &nbsp;
-                            @endforeach
+                <div class="post">
+                    <div class="post-date"><span>{{ $currentSubcategory->name }} vol. {{ $currentPost }} - {{ $post->published_at->format('l F j, Y') }}</span></div>
+                    <div class="post-header">
+                        <div class="post-title">
+                            {{ $post->title }}
                         </div>
                     </div>
-                @endforeach
+                    {!! $post->body !!}
+                    <div class="post-tags">
+                        @foreach($post->tags as $tag)
+                            <a href="/tags/{{ $tag->name }}">#{{ $tag->name }}</a> &nbsp;
+                        @endforeach
+                    </div>
+                    <div class="controls">
+                        <div>
+                            @if($post->hasPrevious())
+                                <a href="/reader/{{ $currentSubcategory->id }}/{{ $currentPost - 1 }}" class="btn btn-primary">Previous</a>
+                            @endif    
+                        </div>
+                        <div>
+                            @if($post->hasNext())
+                                <a href="/reader/{{ $currentSubcategory->id }}/{{ $currentPost + 1 }}" class="btn btn-primary">Next</a>
+                            @endif
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </body>

@@ -21,7 +21,7 @@ class PostController extends Controller
     {
         $posts = Post::select('id', 'title', 'description', 'category_id', 'subcategory_id', 'published_at')->get();
 
-        return view('posts')
+        return view('post.list')
             ->with('posts', $posts);
     }
 
@@ -32,7 +32,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('create-post')
+        return view('post.create')
             ->with('categories', Category::all())
             ->with('subcategories', Subcategory::all())
             ->with('tags', Tag::all());
@@ -57,7 +57,7 @@ class PostController extends Controller
         $post = Post::create([
             'title' => $request->input('title'),
             'description' => $request->input('description'),
-            'body' => $request->input('body'),
+            'body' => nl2br($request->input('body')),
             'published_at' => ($request->input('publish') ? date('Y-m-d H:i:s', time()) : null),
             'published_by' => ($request->input('publish') ? Auth::user()->id : null),
             'category_id' => ($subcategory ? $subcategory->category_id : null),
@@ -86,7 +86,7 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        return view('preview-post')
+        return view('blog.preview-post')
             ->with('post', Post::find($id))
             ->with('categories', Category::all());
     }
@@ -99,7 +99,7 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        return view('edit-post')
+        return view('post.edit')
             ->with('post', Post::find($id))
             ->with('categories', Category::all())
             ->with('subcategories', Subcategory::all())
@@ -127,7 +127,7 @@ class PostController extends Controller
         $post->update([
             'title' => $request->input('title'),
             'description' => $request->input('description'),
-            'body' => $request->input('body'),
+            'body' => nl2br($request->input('body')),
             'category_id' => ($subcategory ? $subcategory->category_id : null),
             'subcategory_id' => ($request->input('subcategory') ?: null),
             'published_at' => ($request->input('publish') == 'true' ? date('Y-m-d H:i:s', time()) : null),
