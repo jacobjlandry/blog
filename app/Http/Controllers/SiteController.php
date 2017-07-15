@@ -7,6 +7,7 @@ use App\Category;
 use App\Subcategory;
 use App\Tag;
 use Auth;
+use Stat;
 
 class SiteController extends Controller
 {
@@ -15,8 +16,11 @@ class SiteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($category = false, $subcategory = false)
+    public function index(Request $request, $category = false, $subcategory = false)
     {
+        // log site stats
+        Stat::log($request);
+
         $categories = Category::orderBy('weight', 'asc')->get();
         if(!$category) {
             $category = $categories->first()->name;

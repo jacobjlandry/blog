@@ -32,7 +32,100 @@
                     </div>
                 @endforeach
             </div>
+            <div style="display: flex; flex-direction: column;">
+                <div class="panel panel-info">
+                    <div class="panel-heading">Page Visits</div>
+                    <div class="panel-body" style="display: flex; justify-content: space-between;">
+                        <div style="width: 45%;">
+                            <h3>Today</h3>
+                            <canvas width="100" height="100" id="todayVisitsChart"></canvas>
+                        </div>
+                        <div style="width: 45%;">
+                            <h3>Lifetime</h3>
+                            <canvas width="100" height="100" id="visitsChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-info">
+                    <div class="panel-heading">Visitors</div>
+                    <div class="panel-body">
+                        <h3>Today</h3>
+                        <span class="dashboard-number">{{ $totalVisitors->where('date', date('Y-m-d'))->sum('count') }}</span> Visits From <span class="dashboard-number">{{ $totalVisitors->where('date', date('Y-m-d'))->count() }}</span> Unique Visitors
+
+                        <h3>Lifetime</h3>
+                        <span class="dashboard-number">{{ $totalVisitors->sum('count') }}</span> Visits From <span class="dashboard-number">{{ $totalVisitors->unique('ip_address')->count() }}</span> Unique Visitors<br />
+
+                        <!-- Daily Visits -->
+                        <canvas id="dailyVisitsChart"></canvas>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    // And for a doughnut chart
+    var colors = [
+        'rgb(2,117,216)',
+        'rgb(92,184,92)',
+        'rgb(91,192,222)',
+        'rgb(240,173,78)',
+        'rgb(217,83,79)',
+        'rgb(2,117,216)',
+        'rgb(92,184,92)',
+        'rgb(91,192,222)',
+        'rgb(240,173,78)',
+        'rgb(217,83,79)',
+        'rgb(2,117,216)',
+        'rgb(92,184,92)',
+        'rgb(91,192,222)',
+        'rgb(240,173,78)',
+        'rgb(217,83,79)'
+    ];
+    var ctx = $("#todayVisitsChart");
+    var todayVisitsChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['{!! $todayPageVisits->pluck('url')->implode("','") !!}'],
+            datasets: [{
+                label: "Visits by Page (Today)",
+                backgroundColor: colors,
+                borderColor: colors,
+                data: [{{ $todayPageVisits->pluck('count')->implode(',') }}],
+            }],
+        },
+        options: {}
+    });
+
+    var ctx = $('#visitsChart');
+    var visitsChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['{!! $pageVisits->pluck('url')->implode("','") !!}'],
+            datasets: [{
+                label: "Visits by Page",
+                backgroundColor: colors,
+                borderColor: colors,
+                data: [{{ $pageVisits->pluck('count')->implode(',') }}],
+            }],
+        },
+        options: {}
+    });
+
+    var ctx = $('#dailyVisitsChart');
+    var visitsChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['{!! $totalVisits->pluck('date')->implode("','") !!}'],
+            datasets: [{
+                label: "Visits by Day",
+                backgroundColor: colors,
+                borderColor: colors,
+                data: [{{ $totalVisits->pluck('count')->implode(',') }}],
+            }],
+        },
+        options: {}
+    });
+</script>
 @endsection

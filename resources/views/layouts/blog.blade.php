@@ -22,7 +22,7 @@
 <body>
 <div style="padding-bottom: 55px;">
     <div class="title">
-        {{ config('app.name') }}
+        <a href="/" class="nostyle">{{ config('app.name') }}</a>
     </div>
 
     <div class="navigation">
