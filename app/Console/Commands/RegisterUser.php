@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Hash;
 use App\User;
+use Mail;
 
 class RegisterUser extends Command
 {
@@ -62,5 +63,13 @@ class RegisterUser extends Command
         $user->save();
 
         $this->info('Good news! User ' . $firstName . ' ' . $lastName . '(' . $email . ') has been created! Happy blogging!');
+
+        Mail::send('email.registration', ['user' => $user], function ($m) {
+            $m->from(config('app.email'), config('app.name'));
+
+            $m->to(config('app.owner'), 'Owner of ' . config('app.name'))->subject('New User Registered');
+        });
+
+        $this->info("Notification has been sent to " . config('app.owner') . ".");
     }
 }

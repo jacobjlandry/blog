@@ -55,6 +55,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Application Email
+    |--------------------------------------------------------------------------
+    |
+    | Email address of the owner of the tool (for messaging purposes)
+    |
+    */
+
+    'email' => env('APP_EMAIL', 'noreply@jacobjlandry.com'),
+    'owner' => env('APP_OWNER', 'noreply@jacobjlandry.com'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Timezone
     |--------------------------------------------------------------------------
     |

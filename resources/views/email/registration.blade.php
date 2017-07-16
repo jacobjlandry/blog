@@ -1,0 +1,1 @@
+A new user ({{ $user->email }}) has been registered to blog on {{ config('app.url') }}.
