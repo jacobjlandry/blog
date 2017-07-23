@@ -50,11 +50,16 @@ class TagController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param Tag $tag
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
-    public function destroy($id)
+    public function destroy(Tag $tag)
     {
-        Tag::find($id)->delete();
+        // remove from any posts
+        $tag->posts()->detach();
+
+        // delete
+        $tag->delete();
     }
 }
