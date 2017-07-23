@@ -22,7 +22,7 @@ class CreatePostsTable extends Migration
             $table->dateTime('published_at')->nullable();
             $table->integer('created_by');
             $table->integer('published_by')->nullable();
-            $table->integer('category_id')->nullable();
+            $table->integer('category_id');
             $table->integer('subcategory_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
