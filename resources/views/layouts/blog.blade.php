@@ -26,9 +26,11 @@
     </div>
 
     <div class="navigation">
-        @foreach($categories as $category)
-            <div class="nav"><a class="@if(isset($currentCategory) && $currentCategory == $category->name) active @endif" href="/{{ $category->name }}">{{ $category->name }}</a></div>
-        @endforeach
+        @if(isset($categories))
+            @foreach($categories as $category)
+                <div class="nav"><a class="@if(isset($currentCategory) && $currentCategory == $category->name) active @endif" href="/{{ $category->name }}">{{ $category->name }}</a></div>
+            @endforeach
+        @endif
     </div>
 
     <div class="content">

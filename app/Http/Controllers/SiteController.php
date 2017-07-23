@@ -21,6 +21,11 @@ class SiteController extends Controller
         // log site stats
         Stat::log($request);
 
+        // No Categories yet, site has not been set up.
+        if(!Category::count()) {
+            abort(418);
+        }
+
         $categories = Category::orderBy('weight', 'asc')->get();
         if(!$category) {
             $category = $categories->first()->name;

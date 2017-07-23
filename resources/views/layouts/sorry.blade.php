@@ -1,3 +1,3 @@
 <div class="sorry">
-    :[ CANNOT COMPUTE
+    @if(isset($message)) {{ $message }} @else :[ CANNOT COMPUTE @endif
 </div>
