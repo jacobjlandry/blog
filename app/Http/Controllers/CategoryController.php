@@ -54,59 +54,50 @@ class CategoryController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param Category $category
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
-    public function edit($id)
+    public function edit(Category $category)
     {
         return view('category.edit')
-            ->with('category', Category::find($id));
+            ->with('category', $category);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param Category $category
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Category $category)
     {
         $this->validate($request, [
-            'name' => ['required', 'max:255', Rule::unique('categories')->ignore($id)],
-            'description' => 'max:255',
-            'weight' => 'required'
+            'name' => ['required', 'max:255', Rule::unique('categories')->ignore($category->id)],
+            'description' => 'required|max:255'
         ]);
 
-        Category::find($id)
+        $category
             ->update([
                 'name' => $request->input('name'),
                 'description' => $request->input('description'),
-                'weight' => $request->input('weight')
+                'weight' => ($request->input('weight') ?: 0)
             ]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param Category $category
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
-    public function destroy($id)
+    public function destroy(Category $category)
     {
-        Category::find($id)->delete();
+        $category->delete();
     }
 }

@@ -13,6 +13,9 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @if(!$categories->count())
+                        <tr><td colspan="3">No categories have been created</td></tr>
+                    @endif
                     @foreach($categories as $category)
                         <tr>
                             <td><a href="/categories/{{ $category->id }}/edit">{{ $category->name }}</a></td>

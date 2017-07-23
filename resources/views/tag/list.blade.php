@@ -12,6 +12,12 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @if(!$tags->count())
+                        <tr>
+                            <td colspan="2">No tags have been created</td>
+                        </tr>
+                    @endif
+                    
                     @foreach($tags as $tag)
                         <tr>
                             <td>{{ $tag->name }}</td>

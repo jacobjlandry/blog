@@ -81,26 +81,28 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param Post $post
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
-    public function show($id)
+    public function show(Post $post)
     {
         return view('blog.preview-post')
-            ->with('post', Post::find($id))
+            ->with('post', $post)
             ->with('categories', Category::all());
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param Post $post
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
         return view('post.edit')
-            ->with('post', Post::find($id))
+            ->with('post', $post)
             ->with('categories', Category::all())
             ->with('subcategories', Subcategory::all())
             ->with('tags', Tag::all());
@@ -109,19 +111,19 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param Post $post
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
         $this->validate($request, [
-            'title' => ['required', 'max:255', Rule::unique('posts')->ignore($id)],
+            'title' => ['required', 'max:255', Rule::unique('posts')->ignore($post->id)],
             'description' => 'required',
             'body' => 'required'
         ]);
 
-        $post = Post::find($id);
         $subcategory = Subcategory::find($request->input('subcategory'));
 
         $post->update([
@@ -148,12 +150,13 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param Post $Post
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
-    public function destroy($id)
+    public function destroy(Post $Post)
     {
-        Post::find($id)->tags()->sync([]);
-        Post::find($id)->delete();
+        $post->tags()->sync([]);
+        $post->delete();
     }
 }

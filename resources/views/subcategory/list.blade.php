@@ -18,6 +18,10 @@
                             <td>{{ $subcategory->description }}</td>
                         </tr>
                     @endforeach
+
+                    @if(!$subcategories->count())
+                        <tr><td colspan="2">No subcategories have been created!</td></tr>
+                    @endif
                 </tbody>
             </table>
             <div style="display: flex; justify-content: space-between;">

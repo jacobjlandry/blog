@@ -16,6 +16,12 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @if(!$posts->count())
+                        <tr>
+                            <td colspan="6">No posts have been created</td>
+                        </tr>
+                    @endif
+
                     @foreach($posts as $post)
                         <tr>
                             <td><a href="/posts/{{ $post->id }}/edit">{{ $post->title }}</a></td>

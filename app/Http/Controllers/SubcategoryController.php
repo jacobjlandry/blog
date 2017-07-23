@@ -55,45 +55,36 @@ class SubcategoryController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param Subcategory $subcategory
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
-    public function edit($id)
+    public function edit(Subcategory $subcategory)
     {
         return view('subcategory.edit')
-            ->with('subcategory', Subcategory::find($id))
+            ->with('subcategory', $subcategory)
             ->with('categories', Category::all());
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param Subcategory $subcategory
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Subcategory $subcategory)
     {
         $this->validate($request, [
-            'name' => ['required', 'max:255', Rule::unique('subcategories')->ignore($id)],
+            'name' => ['required', 'max:255', Rule::unique('subcategories')->ignore($subcategory->id)],
             'description' => 'required|max:255',
             'category' => 'required'
         ]);
 
-        Subcategory::find($id)
+        $subcategory
             ->update([
                 'name' => $request->input('name'),
                 'description' => $request->input('description'),
@@ -104,11 +95,11 @@ class SubcategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param App\Subcategory|Subcategory $subcategory
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Subcategory $subcategory)
     {
-        Subcategory::find($id)->delete();
+        $subcategory->delete();
     }
 }

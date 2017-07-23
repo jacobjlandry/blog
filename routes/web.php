@@ -15,10 +15,10 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/admin', 'HomeController@index')->name('admin');
 
-Route::group(['middleware' => ['auth']], function() {
+Route::group(['middleware' => ['auth', 'web']], function() {
     Route::resource('posts', 'PostController');
-    Route::resource('categories', 'CategoryController');
-    Route::resource('subcategories', 'SubcategoryController');
+    Route::resource('categories', 'CategoryController', ['except' => ['show']]);
+    Route::resource('subcategories', 'SubcategoryController', ['except' => ['show']]);
     Route::resource('tags', 'TagController', ['except' => ['show', 'edit', 'update']]);
     Route::resource('settings', 'SettingsController', ['except' => ['show']]);
 });

@@ -13,6 +13,12 @@
                     </tr>
                     </thead>
                     <tbody>
+                    @if(!$settings->count())
+                        <tr>
+                            <td colspan="3">No settings have been created</td>
+                        </tr>
+                    @endif
+
                     @foreach($settings as $setting)
                         <tr>
                             <td><a href="/settings/{{ $setting->id }}/edit">{{ $setting->name }}</a></td>
