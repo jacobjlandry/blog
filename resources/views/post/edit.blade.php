@@ -17,13 +17,21 @@
             <div class="" style="padding-bottom: 15px;">
                 <textarea id="body" name="body" class="form-control" placeholder="Cool blog post!">{{ preg_replace("/<br\s*\/*>/", "", $post->body) }}</textarea>
             </div>
-            <div class="" style="padding-bottom: 15px;">
-                <select id="subcategory" name="subcategory" class="form-control">
-                    <option value="">Category</option>
+            <div class="" id="category-container" style="padding-bottom: 15px;">
+                <select id="category" name="category" class="form-control">
+                    <option value="" selected>Category</option>
                     @foreach($categories as $category)
-                        <optgroup label="{{ $category->name }}">
+                        <option value="{{ $category->id }}" @if($post->category_id == $category->id) selected @endif>{{ $category->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div id="subcategory-container" class="" style="padding-bottom: 15px; @if($post->category_id === null) display: none; @endif">
+                <select id="subcategory" name="subcategory" class="form-control">
+                    <option value="" selected>Subcategory</option>
+                    @foreach($categories as $category)
+                        <optgroup id="category-{{ $category->id }}" label="{{ $category->name }}">
                             @foreach($category->subcategories as $subcategory)
-                                <option value="{{ $subcategory->id }}" @if($subcategory->id == $post->subcategory_id) selected @endif>{{ $subcategory->name }}</option>
+                                <option class="subcategory-option" value="{{ $subcategory->id }}" @if($post->subcategory_id == $subcategory->id) selected @endif disabled>{{ $subcategory->name }}</option>
                             @endforeach
                         </optgroup>
                     @endforeach
@@ -61,6 +69,7 @@
                         title: $('#title').val(),
                         description: $('#description').val(),
                         body: $('#body').val(),
+                        category: $('#category').find(':selected').val(),
                         subcategory: $('#subcategory').find(':selected').val(),
                         tags: $('#tags').val(),
                         publish: $('#publish').is(':checked')
@@ -97,6 +106,21 @@
                     $('#errors-alert').show();
                 }
             });
+        });
+
+        $('#category').on('change', function(e) {
+            var category = $('#category :selected').val();
+            if(category) {
+                $('#subcategory').val('');
+                $('#subcategory-container').show();
+                $('.subcategory-option').attr('disabled', true);
+                $('#category-' + category + ' option').removeAttr('disabled');
+            }
+            else {
+                $('#subcategory-container').hide();
+                $('.subcategory-option').removeAttr('selected');
+                $('#subcategory').val('');
+            }
         });
     });
 </script>

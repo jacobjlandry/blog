@@ -49,10 +49,10 @@ class PostController extends Controller
         $this->validate($request, [
             'title' => 'required|unique:posts|max:255',
             'description' => 'required',
-            'body' => 'required'
+            'body' => 'required',
+            'category' => 'required',
+            'subcategory' => 'category'
         ]);
-
-        $subcategory = Subcategory::find($request->input('subcategory'));
 
         $post = Post::create([
             'title' => $request->input('title'),
@@ -60,7 +60,7 @@ class PostController extends Controller
             'body' => nl2br($request->input('body')),
             'published_at' => ($request->input('publish') ? date('Y-m-d H:i:s', time()) : null),
             'published_by' => ($request->input('publish') ? Auth::user()->id : null),
-            'category_id' => ($subcategory ? $subcategory->category_id : null),
+            'category_id' => $request->input('category'),
             'subcategory_id' => ($request->input('subcategory') ?: null),
             'created_by' => Auth::user()->id
         ]);
@@ -121,16 +121,16 @@ class PostController extends Controller
         $this->validate($request, [
             'title' => ['required', 'max:255', Rule::unique('posts')->ignore($post->id)],
             'description' => 'required',
-            'body' => 'required'
+            'body' => 'required',
+            'category' => 'required',
+            'subcategory' => 'category'
         ]);
-
-        $subcategory = Subcategory::find($request->input('subcategory'));
 
         $post->update([
             'title' => $request->input('title'),
             'description' => $request->input('description'),
             'body' => nl2br($request->input('body')),
-            'category_id' => ($subcategory ? $subcategory->category_id : null),
+            'category_id' => $request->input('category'),
             'subcategory_id' => ($request->input('subcategory') ?: null),
             'published_at' => ($request->input('publish') == 'true' ? date('Y-m-d H:i:s', time()) : null),
             'published_by' => ($request->input('publish') == 'true' ? Auth::user()->id : null)
@@ -150,11 +150,11 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Post $Post
+     * @param Post $post
      * @return \Illuminate\Http\Response
      * @internal param int $id
      */
-    public function destroy(Post $Post)
+    public function destroy(Post $post)
     {
         $post->tags()->sync([]);
         $post->delete();

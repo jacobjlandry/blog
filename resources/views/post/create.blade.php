@@ -26,16 +26,16 @@
                 <div class="@if($errors->has('body')) has-error @endif" style="padding-bottom: 15px;">
                     <textarea name="body" class="form-control" placeholder="Cool blog post!">{{ old('body') }}</textarea>
                 </div>
-                <div class="@if($errors->has('category')) has-error @endif" style="padding-bottom: 15px;">
-                    <select id="category-select" name="category" class="form-control">
+                <div id="category-container" class="@if($errors->has('category')) has-error @endif" style="padding-bottom: 15px;">
+                    <select id="category" name="category" class="form-control">
                         <option value="" selected>Category</option>
                         @foreach($categories as $category)
                             <option value="{{ $category->id }}" @if(old('category') == $category->id) selected @endif>{{ $category->name }}</option>
                         @endforeach
                     </select>
                 </div>
-                <div id="subcategory" class="@if($errors->has('subcategory')) has-error @endif" style="padding-bottom: 15px; display: none;">
-                    <select id="subcategory-select" name="subcategory" class="form-control">
+                <div id="subcategory-container" class="@if($errors->has('subcategory')) has-error @endif" style="padding-bottom: 15px; @if(old('category') === null) display: none; @endif">
+                    <select id="subcategory" name="subcategory" class="form-control">
                         <option value="" selected>Subcategory</option>
                         @foreach($categories as $category)
                             <optgroup id="category-{{ $category->id }}" label="{{ $category->name }}">
@@ -63,18 +63,18 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-        $('#category-select').on('change', function(e) {
-            var category = $('#category-select :selected').val();
+        $('#category').on('change', function(e) {
+            var category = $('#category :selected').val();
             if(category) {
-                $('#subcategory-select').val('');
-                $('#subcategory').show();
+                $('#subcategory').val('');
+                $('#subcategory-container').show();
                 $('.subcategory-option').attr('disabled', true);
                 $('#category-' + category + ' option').removeAttr('disabled');
             }
             else {
-                $('#subcategory').hide();
+                $('#subcategory-container').hide();
                 $('.subcategory-option').removeAttr('selected');
-                $('#subcategory-select').val('');
+                $('#subcategory').val('');
             }
         });
     });
