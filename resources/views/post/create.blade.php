@@ -26,13 +26,21 @@
                 <div class="@if($errors->has('body')) has-error @endif" style="padding-bottom: 15px;">
                     <textarea name="body" class="form-control" placeholder="Cool blog post!">{{ old('body') }}</textarea>
                 </div>
-                <div class="@if($errors->has('subcategory')) has-error @endif" style="padding-bottom: 15px;">
-                    <select name="subcategory" class="form-control">
+                <div class="@if($errors->has('category')) has-error @endif" style="padding-bottom: 15px;">
+                    <select id="category-select" name="category" class="form-control">
                         <option value="" selected>Category</option>
                         @foreach($categories as $category)
-                            <optgroup label="{{ $category->name }}">
+                            <option value="{{ $category->id }}" @if(old('category') == $category->id) selected @endif>{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div id="subcategory" class="@if($errors->has('subcategory')) has-error @endif" style="padding-bottom: 15px; display: none;">
+                    <select id="subcategory-select" name="subcategory" class="form-control">
+                        <option value="" selected>Subcategory</option>
+                        @foreach($categories as $category)
+                            <optgroup id="category-{{ $category->id }}" label="{{ $category->name }}">
                                 @foreach($category->subcategories as $subcategory)
-                                    <option value="{{ $subcategory->id }}" @if(old('subcategory') == $subcategory->id) selected @endif>{{ $subcategory->name }}</option>
+                                    <option class="subcategory-option" value="{{ $subcategory->id }}" @if(old('subcategory') == $subcategory->id) selected @endif disabled>{{ $subcategory->name }}</option>
                                 @endforeach
                             </optgroup>
                         @endforeach
@@ -52,4 +60,23 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#category-select').on('change', function(e) {
+            var category = $('#category-select :selected').val();
+            if(category) {
+                $('#subcategory-select').val('');
+                $('#subcategory').show();
+                $('.subcategory-option').attr('disabled', true);
+                $('#category-' + category + ' option').removeAttr('disabled');
+            }
+            else {
+                $('#subcategory').hide();
+                $('.subcategory-option').removeAttr('selected');
+                $('#subcategory-select').val('');
+            }
+        });
+    });
+</script>
 @endsection
