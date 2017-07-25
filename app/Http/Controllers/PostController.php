@@ -140,6 +140,9 @@ class PostController extends Controller
         ]);
 
         $tags = collect(explode(",", $request->input('tags')))
+            ->filter(function($tag) {
+                return $tag != "";
+            })
             ->map(function($name) {
                 $tag = Tag::firstOrCreate([
                     'name' => trim($name)
