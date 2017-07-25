@@ -12,6 +12,7 @@ class Stat extends Model
     public static function log(Request $request)
     {
         $url = str_replace(config('app.url'), "", $request->url());
+	$url = str_replace('%20', ' ', $url);
         if($url == "") {
             $url = "/";
         }
