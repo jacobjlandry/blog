@@ -54,4 +54,13 @@ class HomeController extends Controller
             ->with('totalVisitors', $totalVisitors)
             ->with('totalVisits', $totalVisits);
     }
+
+    /**
+     * Truncate the statistics table
+     */
+    public function clearStats()
+    {
+        Stat::truncate();
+	return redirect('/admin');
+    }
 }

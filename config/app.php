@@ -51,7 +51,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://blog.dev'),
+    'url' => env('APP_URL', 'http://blog.jacobjlandry.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -115,7 +115,7 @@ return [
     |
     */
 
-    'key' => env('APP_KEY'),
+    'key' => env('BLOG_APP_KEY'),
 
     'cipher' => 'AES-256-CBC',
 

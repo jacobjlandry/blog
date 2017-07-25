@@ -21,6 +21,7 @@ Route::group(['middleware' => ['auth', 'web']], function() {
     Route::resource('subcategories', 'SubcategoryController', ['except' => ['show']]);
     Route::resource('tags', 'TagController', ['except' => ['show', 'edit', 'update']]);
     Route::resource('settings', 'SettingsController', ['except' => ['show']]);
+    Route::post('stats/clear', 'HomeController@clearStats');
 });
 
 Route::get('/tags/{name}', 'SiteController@tags');

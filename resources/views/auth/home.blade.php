@@ -30,7 +30,17 @@
             </div>
             <div style="display: flex; flex-direction: column;">
                 <div class="panel panel-info">
-                    <div class="panel-heading">Page Visits</div>
+                    <div class="panel-heading" style="display: flex; justify-content: space-between; align-items: center;">
+			<div>
+			    Page Visits
+			</div>
+			<div>
+			    <form action="/stats/clear" method="POST">
+			    	{{ csrf_field() }}
+			    	<input type="submit" class="btn btn-danger" value="Clear" />
+			    </form>
+			</div>
+		    </div>
                     <div class="panel-body" style="display: flex; justify-content: space-between;">
                         <div style="width: 45%;">
                             <h3>Today</h3>
@@ -43,7 +53,17 @@
                     </div>
                 </div>
                 <div class="panel panel-info">
-                    <div class="panel-heading">Visitors</div>
+                    <div class="panel-heading" style="display: flex; justify-content: space-between; align-items: center;">
+			<div>
+			    Visitors
+			</div>
+			<div>
+			    <form action="/stats/clear" method="POST">
+			    	{{ csrf_field() }}
+			    	<input type="submit" class="btn btn-danger" value="Clear" />
+			    </form>
+			</div>
+		    </div>
                     <div class="panel-body">
                         <h3>Today</h3>
                         <span class="dashboard-number">{{ $totalVisitors->where('date', date('Y-m-d'))->sum('count') }}</span> Visits From <span class="dashboard-number">{{ $totalVisitors->where('date', date('Y-m-d'))->count() }}</span> Unique Visitors
