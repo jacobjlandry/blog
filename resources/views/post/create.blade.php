@@ -24,7 +24,7 @@
                     <input name="description" type="text" class="form-control" placeholder="description" value="{{ old('description') }}" />
                 </div>
                 <div class="@if($errors->has('body')) has-error @endif" style="padding-bottom: 15px;">
-                    <textarea name="body" class="form-control" placeholder="Cool blog post!">{{ old('body') }}</textarea>
+                    <textarea name="body" class="form-control" rows="10" placeholder="Cool blog post!">{{ old('body') }}</textarea>
                 </div>
                 <div id="category-container" class="@if($errors->has('category')) has-error @endif" style="padding-bottom: 15px;">
                     <select id="category" name="category" class="form-control">

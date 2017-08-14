@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container" style="padding-bottom: 25px;">
     <div id="errors-alert" class="alert alert-danger" style="display: none;">
         <ul id="errors"></ul>
     </div>
@@ -15,7 +15,7 @@
                 <input id="description" name="description" type="text" class="form-control" placeholder="description" value="{{ $post->description }}" />
             </div>
             <div class="" style="padding-bottom: 15px;">
-                <textarea id="body" name="body" class="form-control" placeholder="Cool blog post!">{{ preg_replace("/<br\s*\/*>/", "", $post->body) }}</textarea>
+                <textarea id="body" name="body" class="form-control" rows="10" placeholder="Cool blog post!">{{ preg_replace("/<br\s*\/*>/", "", $post->body) }}</textarea>
             </div>
             <div class="" id="category-container" style="padding-bottom: 15px;">
                 <select id="category" name="category" class="form-control">
@@ -45,13 +45,19 @@
                 <div>
                     <a href="/posts/{{ $post->id }}" target="_blank">Preview Last Save</a>
                 </div>
-                <div>
-                    <a href="/posts" class="btn btn-danger">Cancel</a>
-                    <button id="update" class="btn btn-success">Update</button>
+	    </div>
+            <div style="display: flex; flex-direction: row; padding-top: 10px;">
+                <div style="flex-grow: 1; padding-right: 5px;">
+                    <a href="/posts" class="btn btn-default btn-block">Cancel</a>
+                </div>
+                <div style="flex-grow: 1; padding-left: 5px;">
+                    <button id="update" class="btn btn-success btn-block">Update</button>
                 </div>
             </div>
-            <div style="display: flex; flex-direction: row; justify-content: flex-end; padding-top: 15px;">
-                <button id="delete" class="btn btn-danger">Delete</button>
+            <div style="display: flex; flex-direction: row; padding-top: 35px;">
+                <div style="flex-grow: 1;">
+                    <button id="delete" class="btn btn-danger btn-block">Delete</button>
+                </div>
             </div>
         </div>
     </div>
