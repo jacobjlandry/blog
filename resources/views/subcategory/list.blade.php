@@ -24,9 +24,13 @@
                     @endif
                 </tbody>
             </table>
-            <div style="display: flex; justify-content: space-between;">
-                <a href="/home" class="btn btn-danger">Admin Home</a>
-                <a href="/subcategories/create" class="btn btn-success">New Subcategory</a>
+            <div style="display: flex; flex-direction: row; padding-top: 10px;">
+                <div style="flex-grow: 1; padding-right: 5px;">
+                    <a href="/home" class="btn btn-default btn-block">Admin Home</a>
+                </div>
+                <div style="flex-grow: 1; padding-right: 5px;">
+                    <a href="/subcategories/create" class="btn btn-success btn-block">New Subcategory</a>
+                </div>
             </div>
         </div>
     </div>
