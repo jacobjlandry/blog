@@ -45,7 +45,7 @@
                 <div>
                     <a href="/posts/{{ $post->id }}" target="_blank">Preview Last Save</a>
                 </div>
-	    </div>
+	        </div>
             <div style="display: flex; flex-direction: row; padding-top: 10px;">
                 <div style="flex-grow: 1; padding-right: 5px;">
                     <a href="/posts" class="btn btn-default btn-block">Cancel</a>

@@ -17,15 +17,18 @@
             <div class="" style="padding-bottom: 15px;">
                 <input id="weight" name="weight" type="text" class="form-control" placeholder="weight" value="{{ $category->weight }}" />
             </div>
-            <div style="display: flex; flex-direction: row; justify-content: space-between;">
-                <div></div>
-                <div>
-                    <a href="/categories" class="btn btn-danger">Cancel</a>
-                    <button id="update" class="btn btn-success">Update</button>
+            <div style="display: flex; flex-direction: row; padding-top: 10px;">
+                <div style="flex-grow: 1; padding-right: 5px;">
+                    <a href="/categories" class="btn btn-default btn-block">Cancel</a>
+                </div>
+                <div style="flex-grow: 1; padding-left: 5px;">
+                    <button id="update" class="btn btn-success btn-block">Update</button>
                 </div>
             </div>
-            <div style="display: flex; flex-direction: row; justify-content: flex-end; padding-top: 15px;">
-                <button id="delete" class="btn btn-danger">Delete</button>
+            <div style="display: flex; flex-direction: row; padding-top: 35px;">
+                <div style="flex-grow: 1;">
+                    <button id="delete" class="btn btn-danger btn-block">Delete</button>
+                </div>
             </div>
         </div>
     </div>

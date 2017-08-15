@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container" style="padding-bottom: 25px;">
     @if (count($errors) > 0)
         <div class="alert alert-danger">
             <ul>
@@ -50,10 +50,15 @@
                     <input type="text" name="tags" class="form-control" placeholder="tags" autocomplete="off" value="{{ old('tags') }}">
                 </div>
                 <div style="display: flex; flex-direction: row; justify-content: space-between;">
-                    <div>Publish <input type="checkbox" name="publish" @if(old('publish')) checked @endif) /></div>
-                    <div>
-                        <a href="/posts" class="btn btn-danger">Cancel</a>
-                        <input type="submit" value="Create" class="btn btn-success" />
+                    <div>Publish <input id="publish" type="checkbox" name="publish" /></div>
+                    <div></div>
+                </div>
+                <div style="display: flex; flex-direction: row; padding-top: 10px;">
+                    <div style="flex-grow: 1; padding-right: 5px;">
+                        <a href="/posts" class="btn btn-default btn-block">Cancel</a>
+                    </div>
+                    <div style="flex-grow: 1; padding-left: 5px;">
+                        <input type="submit" id="update" class="btn btn-success btn-block" />
                     </div>
                 </div>
             </form>

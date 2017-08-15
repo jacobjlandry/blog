@@ -31,12 +31,12 @@
                         @endforeach
                     </select>
                 </div>
-                <div style="display: flex; flex-direction: row; justify-content: space-between;">
-                    <div>
+                <div style="display: flex; flex-direction: row; padding-top: 10px;">
+                    <div style="flex-grow: 1; padding-right: 5px;">
+                        <a href="/subcategories" class="btn btn-default btn-block">Cancel</a>
                     </div>
-                    <div>
-                        <a href="/subcategories" class="btn btn-danger">Cancel</a>
-                        <input type="submit" value="Create" class="btn btn-success" />
+                    <div style="flex-grow: 1; padding-left: 5px;">
+                        <input type="submit" id="update" class="btn btn-success btn-block" />
                     </div>
                 </div>
             </form>
