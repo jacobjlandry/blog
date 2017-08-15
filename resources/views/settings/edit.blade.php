@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container" style="padding-bottom: 25px;">
         <div id="errors-alert" class="alert alert-danger" style="display: none;">
             <ul id="errors"></ul>
         </div>

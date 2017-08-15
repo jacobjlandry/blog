@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container" style="padding-bottom: 25px;">
         @if (count($errors) > 0)
             <div class="alert alert-danger">
                 <ul>
