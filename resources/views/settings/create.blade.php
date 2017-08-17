@@ -26,12 +26,14 @@
                     <div class="@if($errors->has('value')) has-error @endif" style="padding-bottom: 15px;">
                         <input name="value" type="text" class="form-control" placeholder="value" value="{{ old('value') }}" />
                     </div>
-                    <div style="display: flex; flex-direction: row; padding-top: 10px;">
-                        <div style="flex-grow: 1; padding-right: 5px;">
-                            <a href="/settings" class="btn btn-default btn-block">Cancel</a>
-                        </div>
-                        <div style="flex-grow: 1; padding-left: 5px;">
+                    <div style="display: flex; flex-direction: row; padding-top: 25px;">
+                        <div style="flex-grow: 1;">
                             <input type="submit" id="update" class="btn btn-success btn-block" />
+                        </div>
+                    </div>
+                    <div style="display: flex; flex-direction: row; padding-top: 10px;">
+                        <div style="flex-grow: 1;">
+                            <a href="/settings" class="btn btn-default btn-block">Cancel</a>
                         </div>
                     </div>
                 </form>

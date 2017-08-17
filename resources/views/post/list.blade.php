@@ -34,12 +34,14 @@
                     @endforeach
                 </tbody>
             </table>
-            <div style="display: flex; flex-direction: row; padding-top: 10px;">
-                <div style="flex-grow: 1; padding-right: 5px;">
-                    <a href="/home" class="btn btn-default btn-block">Admin Home</a>
-                </div>
-                <div style="flex-grow: 1; padding-right: 5px;">
+            <div style="display: flex; flex-direction: row; padding-top: 25px;">
+                <div style="flex-grow: 1;">
                     <a href="/posts/create" class="btn btn-success btn-block">New Post</a>
+                </div>
+            </div>
+            <div style="display: flex; flex-direction: row; padding-top: 10px;">
+                <div style="flex-grow: 1;">
+                    <a href="/home" class="btn btn-default btn-block">Admin Home</a>
                 </div>
             </div>
         </div>

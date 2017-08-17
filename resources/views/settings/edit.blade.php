@@ -17,12 +17,14 @@
                 <div class="" style="padding-bottom: 15px;">
                     <input type="text" id="value" name="value" class="form-control" placeholder="value" autocomplete="off" value="{{ $setting->value }}" />
                 </div>
-                <div style="display: flex; flex-direction: row; padding-top: 10px;">
-                    <div style="flex-grow: 1; padding-right: 5px;">
-                        <a href="/settings" class="btn btn-default btn-block">Cancel</a>
-                    </div>
-                    <div style="flex-grow: 1; padding-left: 5px;">
+                <div style="display: flex; flex-direction: row; padding-top: 25px;">
+                    <div style="flex-grow: 1;">
                         <button id="update" class="btn btn-success btn-block">Update</button>
+                    </div>
+                </div>
+                <div style="display: flex; flex-direction: row; padding-top: 10px;">
+                    <div style="flex-grow: 1;">
+                        <a href="/settings" class="btn btn-default btn-block">Cancel</a>
                     </div>
                 </div>
                 <div style="display: flex; flex-direction: row; padding-top: 35px;">
