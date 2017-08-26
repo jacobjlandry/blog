@@ -36,6 +36,10 @@
 
     <!-- FontAwesome CDN -->
     <script src="https://use.fontawesome.com/7803aab7f1.js"></script>
+
+    <style>
+        @stack('styles')
+    </style>
 </head>
 <body>
     <div id="app">

@@ -1,10 +1,30 @@
 @extends('layouts.app')
 
+@push('styles')
+    .published {
+        display: none;
+    }
+@endpush
+
+@push('scripts')
+    $('#toggle-published').on('click', function(e) {
+        if($(e.target).prop('checked')) {
+            $('.published').show();
+        }
+        else {
+            $('.published').hide();
+        }
+    });
+@endpush
+
 @section('content')
 <div class="container" style="padding-bottom: 25px;">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <h3>Posts</h3>
+            <div class="heading" style="display: flex; justify-content: space-between; align-items: flex-end;">
+                <h3>Posts</h3>
+                <span><input type="checkbox" id="toggle-published" /> &nbsp; Published</span>
+            </div>
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -24,7 +44,7 @@
                     @endif
 
                     @foreach($posts as $post)
-                        <tr>
+                        <tr @if($post->published_at) class="published" @endif>
                             <td><a href="/posts/{{ $post->id }}/edit">{{ $post->title }}</a></td>
                             <td>{{ $post->description }}</td>
                             <td>@if($post->category) {{ $post->category->name }} @endif</td>
