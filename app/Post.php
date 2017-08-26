@@ -82,4 +82,13 @@ class Post extends Model
     {
         return $this->subcategory->posts[$this->currentPosition() - 1];
     }
+
+    public function first()
+    {
+        return 1;
+    }
+
+    public function last() {
+        return $this->subcategory->posts->count();
+    }
 }
