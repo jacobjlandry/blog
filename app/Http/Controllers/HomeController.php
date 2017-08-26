@@ -43,9 +43,10 @@ class HomeController extends Controller
 
         $totalVisits = Stat::select(DB::raw('count(*) as count'), DB::raw('CAST(created_at as DATE) as date'))
             ->groupBy(DB::raw('CAST(created_at AS DATE)'))
-            ->orderBy(DB::raw('CAST(created_at as DATE)'), 'asc')
+            ->orderBy(DB::raw('CAST(created_at as DATE)'), 'desc')
             ->limit(7)
-            ->get();
+            ->get()
+            ->reverse();
 
         return view('auth.home')
             ->with('settings', Setting::all())
