@@ -50,6 +50,12 @@ class SiteController extends Controller
             ->with('currentCategory', $category);
     }
 
+    /**
+     * View posts by tag
+     *
+     * @param $name
+     * @return $this
+     */
     public function tags($name)
     {
         $categories = Category::orderBy('weight', 'asc')->get();
@@ -66,6 +72,14 @@ class SiteController extends Controller
             ->with('categories', $categories);
     }
 
+    /**
+     * View Posts in reader mode
+     * This allow the user to read a post one at a time in the order they were published
+     *
+     * @param Subcategory $subcategory
+     * @param $currentPost
+     * @return $this
+     */
     public function reader(Subcategory $subcategory, $currentPost)
     {
         $categories = Category::orderBy('weight', 'asc')->get();
@@ -84,6 +98,13 @@ class SiteController extends Controller
             ->with('currentPost', $currentPost);
     }
 
+    /**
+     * View a single post
+     *
+     * @param Request $request
+     * @param Post $post
+     * @return $this
+     */
     public function post(Request $request, Post $post)
     {
         // log site stats
