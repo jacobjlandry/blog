@@ -7,6 +7,14 @@
         height: 50px;
         align-items: center;
     }
+
+    .post-title {
+        color: inherit;
+    }
+    .post-title:hover {
+        color: inherit;
+        text-decoration: none;
+    }
 @endpush
 
 @section('body')
@@ -14,7 +22,7 @@
         <div class="post-date"><span>{{ $currentSubcategory->name }} vol. {{ $currentPost }} - {{ $post->published_at->format('l F j, Y') }}</span></div>
         <div class="post-header">
             <div class="post-title">
-                {{ $post->title }}
+                <a class="post-title" href="{{ $post->url() }}">{{ $post->title }}</a>
             </div>
         </div>
         {!! $post->body !!}

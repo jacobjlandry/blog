@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Category;
 use App\Subcategory;
 use App\Tag;
+use App\Post;
 use Auth;
 use Stat;
 
@@ -81,5 +82,24 @@ class SiteController extends Controller
             ->with('currentCategory', $subcategory->category->name)
             ->with('currentSubcategory', $subcategory)
             ->with('currentPost', $currentPost);
+    }
+
+    public function post(Request $request, Post $post)
+    {
+        // log site stats
+        Stat::log($request);
+
+        // No Categories yet, site has not been set up.
+        if(!Category::count()) {
+            abort(418);
+        }
+
+        $categories = Category::orderBy('weight', 'asc')->get();
+        $category = $post->category;
+
+        return view('blog.welcome')
+            ->with('posts', collect([$post]))
+            ->with('categories', $categories)
+            ->with('currentCategory', $category);
     }
 }

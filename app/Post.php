@@ -91,4 +91,9 @@ class Post extends Model
     public function last() {
         return $this->subcategory->posts->count();
     }
+
+    public function url()
+    {
+        return "/post/" . $this->id;
+    }
 }

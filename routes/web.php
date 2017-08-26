@@ -26,4 +26,5 @@ Route::group(['middleware' => ['auth', 'web']], function() {
 
 Route::get('/tags/{name}', 'SiteController@tags');
 Route::get('/reader/{subcategory}/{currentPost}', 'SiteController@reader');
+Route::get('/post/{post}', 'SiteController@post');
 Route::get('/{category?}/{subcategory?}', 'SiteController@index');
