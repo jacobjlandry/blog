@@ -4,6 +4,7 @@
 <div class="container" style="padding-bottom: 25px;">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
+            <h3>Categories</h3>
             <table class="table table-bordered">
                 <thead>
                     <tr>
