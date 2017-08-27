@@ -19,7 +19,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::select('id', 'title', 'description', 'category_id', 'subcategory_id', 'published_at')->get();
+        $posts = Post::select('id', 'slug', 'title', 'description', 'category_id', 'subcategory_id', 'published_at')->get();
 
         return view('post.list')
             ->with('posts', $posts);
@@ -62,7 +62,8 @@ class PostController extends Controller
             'published_by' => ($request->input('publish') ? Auth::user()->id : null),
             'category_id' => $request->input('category'),
             'subcategory_id' => ($request->input('subcategory') ?: null),
-            'created_by' => Auth::user()->id
+            'created_by' => Auth::user()->id,
+            'slug' => str_slug($request->input('title'))
         ]);
 
         $tags = collect(explode(",", $request->input('tags')))
@@ -136,7 +137,8 @@ class PostController extends Controller
             'category_id' => $request->input('category'),
             'subcategory_id' => ($request->input('subcategory') ?: null),
             'published_at' => ($request->input('publish') == 'true' ? date('Y-m-d H:i:s', time()) : null),
-            'published_by' => ($request->input('publish') == 'true' ? Auth::user()->id : null)
+            'published_by' => ($request->input('publish') == 'true' ? Auth::user()->id : null),
+            'slug' => str_slug($request->input('title'))
         ]);
 
         $tags = collect(explode(",", $request->input('tags')))

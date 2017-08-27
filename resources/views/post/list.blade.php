@@ -45,7 +45,7 @@
 
                     @foreach($posts as $post)
                         <tr @if($post->published_at) class="published" @endif>
-                            <td><a href="/posts/{{ $post->id }}/edit">{{ $post->title }}</a></td>
+                            <td><a href="/posts/{{ $post->slug }}/edit">{{ $post->title }}</a></td>
                             <td>{{ $post->description }}</td>
                             <td>@if($post->category) {{ $post->category->name }} @endif</td>
                             <td>@if($post->subcategory) {{ $post->subcategory->name }} @endif</td>

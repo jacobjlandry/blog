@@ -18,6 +18,11 @@ class Post extends Model
         'deleted_at'
     ];
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     public function tags()
     {
         return $this->belongsToMany('App\Tag');
@@ -94,6 +99,6 @@ class Post extends Model
 
     public function url()
     {
-        return "/post/" . $this->id;
+        return "/post/" . $this->slug;
     }
 }
