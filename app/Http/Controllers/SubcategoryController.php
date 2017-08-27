@@ -100,6 +100,11 @@ class SubcategoryController extends Controller
      */
     public function destroy(Subcategory $subcategory)
     {
-        $subcategory->delete();
+        if($subcategory->posts->count() == 0) {
+            $subcategory->delete();
+        }
+        else {
+            throw new \Exception('Cannot delete subcategory while it still has posts attached to it.');
+        }
     }
 }

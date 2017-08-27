@@ -82,7 +82,7 @@
                 error: function(response) {
                     $('#errors').html('');
                     $('input').parent().removeClass('has-error');
-                    $('#errors').append('<li>Unable to delete. Please try again.</li>');
+                    $('#errors').append('<li>Unable to delete. Please make sure this subcategory has no posts attached to it and try again.</li>');
                     $('#errors-alert').show();
                 }
             });
