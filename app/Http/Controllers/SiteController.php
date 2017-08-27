@@ -19,8 +19,11 @@ class SiteController extends Controller
      */
     public function index(Request $request, $category = false, $subcategory = false)
     {
-        // log site stats
-        Stat::log($request);
+        // don't track favicon requests
+        if(!preg_match("/.png$/", $request->url())) {
+            // log site stats
+            Stat::log($request);
+        }
 
         // No Categories yet, site has not been set up.
         if(!Category::count()) {
