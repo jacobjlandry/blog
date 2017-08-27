@@ -98,6 +98,11 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        $category->delete();
+        if($category->posts->count() == 0) {
+            $category->delete();
+        }
+        else {
+            throw new \Exception('Cannot delete category while it still has posts attached to it.');
+        }
     }
 }
