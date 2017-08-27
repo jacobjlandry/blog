@@ -14,6 +14,17 @@
                     <a href="/subcategories">Manage Subcategories</a><br />
                     <a href="/tags">Manage Tags</a><br />
                     <a href="/settings">Manage Settings</a><br />
+                    <br />
+                    <a href="/">Visit Site</a><br />
+                    <a href="{{ route('logout') }}"
+                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                        Logout
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
                 </div>
             </div>
             <div style="display: flex;">

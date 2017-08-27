@@ -43,29 +43,6 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-static-top">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-left: 10%; margin-right: 10%;">
-                <div class="navbar-header">
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}" style="color: #000;">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
-                </div>
-
-                <div>
-                    <a style="color: #000;" href="{{ route('logout') }}"
-                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                        Logout
-                    </a>
-
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        {{ csrf_field() }}
-                    </form>
-                </div>
-            </div>
-        </nav>
-
         @yield('content')
     </div>
 
