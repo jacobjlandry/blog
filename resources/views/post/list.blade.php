@@ -29,10 +29,10 @@
                 <thead>
                     <tr>
                         <th>Title</th>
-                        <th>Description</th>
+                        <th class="unimportant">Description</th>
                         <th>Category</th>
-                        <th>Subcategory</th>
-                        <th>Tags</th>
+                        <th class="unimportant">Subcategory</th>
+                        <th class="unimportant">Tags</th>
                         <th>Published</th>
                     </tr>
                 </thead>
@@ -46,10 +46,10 @@
                     @foreach($posts as $post)
                         <tr @if($post->published_at) class="published" @endif>
                             <td><a href="/posts/{{ $post->slug }}/edit">{{ $post->title }}</a></td>
-                            <td>{{ $post->description }}</td>
+                            <td class="unimportant">{{ $post->description }}</td>
                             <td>@if($post->category) {{ $post->category->name }} @endif</td>
-                            <td>@if($post->subcategory) {{ $post->subcategory->name }} @endif</td>
-                            <td>{{ $post->tags->pluck('name')->implode(', ') }}</td>
+                            <td class="unimportant">@if($post->subcategory) {{ $post->subcategory->name }} @endif</td>
+                            <td class="unimportant">{{ $post->tags->pluck('name')->implode(', ') }}</td>
                             <td>{{ $post->published_at }}</td>
                         </tr>
                     @endforeach
