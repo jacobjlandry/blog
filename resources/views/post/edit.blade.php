@@ -43,7 +43,7 @@
             <div style="display: flex; flex-direction: row; justify-content: space-between;">
                 <div>Publish <input id="publish" type="checkbox" name="publish" @if($post->published_at) checked @endif /></div>
                 <div>
-                    <a href="/posts/{{ $post->id }}" target="_blank">Preview Last Save</a>
+                    <a href="/posts/{{ $post->slug }}" target="_blank">Preview Last Save</a>
                 </div>
 	        </div>
             <div style="display: flex; flex-direction: row; padding-top: 25px;">
