@@ -70,10 +70,11 @@
         $('#update').on('click', function(e) {
             e.preventDefault();
             $.ajax({
-                url: '/posts/{{ $post->id }}',
+                url: '/posts/{{ $post->slug }}',
                 method: 'PUT',
                 data: { 
                         _token: '{{ csrf_token() }}',
+                        id: {{ $post->id }},
                         title: $('#title').val(),
                         description: $('#description').val(),
                         body: $('#body').val(),
@@ -101,7 +102,7 @@
         $('#delete').on('click', function(e) {
             e.preventDefault();
             $.ajax({
-                url: '/posts/{{ $post->id }}',
+                url: '/posts/{{ $post->slug }}',
                 data: { _token:'{{ csrf_token() }}' },
                 method: 'DELETE',
                 success: function(response) {

@@ -25,6 +25,28 @@ class AppServiceProvider extends ServiceProvider
                 return true;
             }
         });
+
+        // Make sure slug is not used already
+        Validator::extend('uniqueSlug', function($attribute, $value, $parameters, $validator) {
+            $request = Request::capture();
+
+            if($attribute == 'id') {
+                $used = \App\Post::where('id', '<>', $value)
+                    ->where('slug', str_slug($request->input('title')))
+                    ->count();
+            }
+            else {
+                $used = \App\Post::where('slug', str_slug($request->input('title')))
+                    ->count();
+            }
+
+            if($used) {
+                return false;
+            }
+            else {
+                return true;
+            }
+        });
     }
 
     /**

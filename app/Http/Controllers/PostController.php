@@ -47,7 +47,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'title' => 'required|unique:posts|max:255',
+            'title' => 'required|unique:posts|max:255|uniqueSlug',
             'description' => 'required',
             'body' => 'required',
             'category' => 'required',
@@ -123,6 +123,7 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $this->validate($request, [
+            'id' => 'uniqueSlug',
             'title' => ['required', 'max:255', Rule::unique('posts')->ignore($post->id)],
             'description' => 'required',
             'body' => 'required',
