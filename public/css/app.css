@@ -113,6 +113,10 @@ html, body {
     color: #0275d8;
 }
 
+.mobile-only {
+    display: none;
+}
+
 /** Hide Unimportant Data on Phone Portrait Mode **/
 @media only screen
 and (min-device-width: 375px)
@@ -121,5 +125,14 @@ and (-webkit-min-device-pixel-ratio: 2)
 and (orientation: portrait) {
     .unimportant {
         display: none;
+    }
+    .content {
+        font-size: 20px;
+    }
+    .post-date {
+        margin-bottom: 25px;
+    }
+    .mobile-only {
+        display: inline;
     }
 }

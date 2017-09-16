@@ -21,6 +21,7 @@
                 <div class="post-title">
                     <a class="post-title" href="{{ $post->url() }}">{{ $post->title }}</a>
                     @if($post->subcategory)
+			<span class="mobile-only"><br /></span>
                         <span class="subcategory"><a href="/{{ $post->subcategory->category->name }}/{{ $post->subcategory->name }}">[{{ $post->subcategory->name }}]</a></span>
                         <span class="subcategory"><a href="/reader/{{ $post->subcategory->id }}/{{ $post->currentPosition() + 1 }}">[Reader View]</a></span>
                     @endif
