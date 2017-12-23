@@ -57,7 +57,7 @@ html, body {
 
 .post {
     padding-top: 15px;
-    text-align: left;
+    text-align: justify;
     width: 80%;
 }
 
@@ -97,7 +97,7 @@ html, body {
     color: #ccc;
     border-bottom: 1px solid #ccc;
     line-height:0.1em;
-    margin-bottom: 15px;
+    margin-bottom: 35px;
 }
 .post-date span {
     background:#fff;

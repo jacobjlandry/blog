@@ -16,7 +16,7 @@
             <div class="separator"></div>
         @endif
         <div class="post">
-            <div class="post-date"><span>{{ $post->published_at->format('l F j, Y') }}</span></div>
+            <div class="post-date"><span>{{ $post->published_at->format('M. j, Y') }}</span></div>
             <div class="post-header">
                 <div class="post-title">
                     <a class="post-title" href="{{ $post->url() }}">{{ $post->title }}</a>
