@@ -127,10 +127,8 @@ and (orientation: portrait) {
         display: none;
     }
     .content {
-        font-size: 20px;
-    }
-    .post-date {
-        margin-bottom: 25px;
+        font-size: 18px;
+        line-height: 28px;
     }
     .mobile-only {
         display: inline;
